@@ -4,8 +4,10 @@ Title: Random Timeseries
 Version: 0.1.0
 Author: Eric Bridgeford
 Maintainer: Eric Bridgeford <ericwb95@gmail.com>
-Description: A function for easy sampling for population timeseries. Makes it
+Description: A package for easy sampling for population timeseries. Makes it
     easier to sample large amounts of data at once for batch testing.
 License: Apache License, Version 2.0
 LazyData: TRUE
 RoxygenNote: 5.0.1
+Imports:
+  mvtnorm
