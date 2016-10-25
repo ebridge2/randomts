@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' A function to create randomized parameters for models that are of particular\n#' importance when considering potential simulated timeseries.\n#'\n#' @param nf: the number of features.\n#' @param option: the model to sample from. Options are 'gaussian'.\n#' @return model: a model to provide parameters for the particular distribution chosen.\n#' \\itemize{\n#'  \\item gaussian model:\n#'    \\itemize{\n#'      \\item model$type = 'gaussian'\n#'      \\item model$mean[nf]: a mean vector for the timeseries to be generated.\n#'      \\item model$cov[nf, nf]: a covariance matrix for the timeseries.\n#'    }\n#' }\n#' @examples\n#' test <- random_model(option='gaussian')\n#' @export\n\nrandom_model <- function(nf, option='gaussian') {\n  model <- list()\n  if (isTRUE(all.equal(option, 'gaussian'))) {\n    model$type <- 'gaussian'\n    model$mean <- rnorm(nf)\n    model$cov <- positiveDef(nf)\n  }\n  return(model)\n}\n",
+    "created" : 1477434519258.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1197899947",
+    "id" : "E188AC53",
+    "lastKnownWriteTime" : 1477434521,
+    "last_content_update" : 1477434521537,
+    "path" : "~/GitHub/randomts/R/random_model.R",
+    "project_path" : "R/random_model.R",
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -14,6 +14,7 @@
 #' }
 #' @examples
 #' test <- random_model(option='gaussian')
+#' @export
 
 random_model <- function(nf, option='gaussian') {
   model <- list()

@@ -26,7 +26,7 @@
 #' @return model: the model chosen. Only returned if simplify=FALSE.
 #' @examples
 #' test <- sample_random_timeseries(100, 10, options='gaussian')
-#' dim(test)
+#' @export
 
 sample_random_timeseries <- function(nt, nf, option='gaussian', model=NULL, noise=FALSE, simplify=FALSE) {
   require('MASS')
@@ -41,7 +41,7 @@ sample_random_timeseries <- function(nt, nf, option='gaussian', model=NULL, nois
   } else {
     stop('The model you have entered is not supported.')
   }
-  if (isTRUE(all.equal(noise_sig, as.numeric(noise)))) {
+  if (isTRUE(all.equal(noise, as.numeric(noise)))) {
     noise <- sapply(1:nf, function(x) mvrnorm(n=nt, mu=0, Sigma=noise), simplify=TRUE)
     signal <- signal + noise
   }

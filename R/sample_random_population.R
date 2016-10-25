@@ -25,6 +25,7 @@
 #' }
 #' @examples
 #' ts <- sample_random_population(4, 2, 100, 1, option='gaussian')
+#' @export
 
 sample_random_population <- function(numsubs, numsessions,
                                      nt, nf, option='gaussian',

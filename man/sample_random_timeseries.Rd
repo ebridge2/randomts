@@ -46,6 +46,5 @@ A function to randomly sample a single random timeseries
 }
 \examples{
 test <- sample_random_timeseries(100, 10, options='gaussian')
-dim(test)
 }
 

@@ -9,6 +9,7 @@
 #   Build and Reload Package:  'Ctrl + Shift + B'
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
+#' @export
 
 positiveDef <- function(nf) {
   positive_def = rnorm(nf)

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' A function to randomly sample a single random timeseries\n#'\n#' @param nt: the number of timesteps.\n#' @param nf: the number of features.\n#' @param options: the model to sample. Options are:\n#' \\itemize{\n#'    \\item 'gaussian': a gaussian random model.\n#'    \\item if model is specified, this option is irrelevant.\n#' }\n#' @param model: a model to provide parameters for the particular distribution chosen.\n#' \\itemize{\n#'  \\item gaussian model:\n#'    \\itemize{\n#'      \\item model$type = 'gaussian'\n#'      \\item model$mean[nf]: a mean vector for the timeseries to be generated.\n#'      \\item model$cov[nf, nf]: a covariance matrix for the timeseries.\n#'    }\n#' }\n#' @param noise: a parameter whether to add zero-mean noise. Provide the sigma (noise=FALSE is to add no noise).\n#' @param simplify: A parameter whether to simplify the output.\n#' \\itemize{\n#'  \\item if simplify=='TRUE'array': returns only the signal.\n#'  \\item if simplify==FALSE: returns a list of the signal and the model.\n#' }\n#' @return signal[nt, nf]: A random timeseries.\n#' @return model: the model chosen. Only returned if simplify=FALSE.\n#' @examples\n#' test <- sample_random_timeseries(100, 10, options='gaussian')\n#' @export\n\nsample_random_timeseries <- function(nt, nf, option='gaussian', model=NULL, noise=FALSE, simplify=FALSE) {\n  require('MASS')\n  if (is.null(model)) {\n    model <- random_model(option=option)\n  } else if(is.null(model$type)) {\n    stop(paste('Your model is not correct. Type is:', model$type))\n  }\n\n  if (isTRUE(all.equal(model$type, 'gaussian'))) {\n    signal <- mvrnorm(n=nt, mu=model$mean, Sigma=model$cov)\n  } else {\n    stop('The model you have entered is not supported.')\n  }\n  if (isTRUE(all.equal(noise, as.numeric(noise)))) {\n    noise <- sapply(1:nf, function(x) mvrnorm(n=nt, mu=0, Sigma=noise), simplify=TRUE)\n    signal <- signal + noise\n  }\n  if (isTRUE(all.equal(simplify, 'array'))) {\n    return(signal)\n  } else {\n    return(list(signal=signal, model=model))\n  }\n}\n",
+    "created" : 1477433517096.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1516728215",
+    "id" : "2CD31D75",
+    "lastKnownWriteTime" : 1477434513,
+    "last_content_update" : 1477434513038,
+    "path" : "~/GitHub/randomts/R/sample_random_timeseries.R",
+    "project_path" : "R/sample_random_timeseries.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
